@@ -1,174 +1,87 @@
- function loginData(){
+function registerData() {
 
-	let email = $("#username").val();
-	let password = $("#password").val();
+    let firstname = $("#firstname").val();
+    let lastname = $("#lastname").val();
+    let day = $("#day").val();
+    let month = $(".dropdown-item.active").text(); 
+    let year = $("#year").val();
+    let password = $("#password").val();
 
-	 let data = {
-		 email:email,
-		 password: password
-	 }
-	 
-	 $.ajax({
-		 
-		 url:"/api/v1/auth/authenticate",
-		 type:"POST",
-		 contentType:"application/json",
-		 dataType:"json",
 
-		 data:JSON.stringify(data),
+	 const months = {
+        "Enero": "01", "Febrero": "02", "Marzo": "03", "Abril": "04", 
+        "Mayo": "05", "Junio": "06", "Julio": "07", "Agosto": "08", 
+        "Septiembre": "09", "Octubre": "10", "Noviembre": "11", "Diciembre": "12"
+    };
 
-		 success: function(rta) {
-			 $("#username").val("");
-			 $("#password").val("");
-			 Cookies.set('token', rta.token);
-			 window.location.replace("inicio.html");
-		 },
-		 error: function(xhr, status) {
-			 alert('Usuario no existente');
-			 $("#username").val("");
-			 $("#password").val("");
-		 },
-		 complete: function(xhr, status) {
-			 //alert('Petición realizada');
-		 }
+	let formattedMonth = months[month];
+    let formattedDate = `${day.padStart(2, '0')}-${formattedMonth}-${year}`; 
 
-	 });
- }
 
- function logOut(){
-	window.location.replace("index.html");
- }
- 
- function registerData(){
-
-	 let firstname = $("#firstname").val();
-	 let lastname = $("#lastname").val();
-	 let email = $("#email").val();
-	 let password = $("#password").val();
 
 	 let data = {
-		 firstname: firstname,
-		 lastname: lastname,
-		 email: email,
+		 nombres: firstname,
+		 apellidos: lastname,
+		 fecha_nacimiento: formattedDate,
 		 password: password
 	 }
 
 	 $.ajax({
 
-		 url:"/api/v1/auth/register",
+		 url: "http://127.0.0.1:5000/users",  // URL de tu API Flask
 		 type:"POST",
 		 contentType:"application/json",
 		 dataType:"json",
 
 		 data:JSON.stringify(data),
-
+		
 		 success: function(rta) {
 			 console.log(rta);
 			 $("#firstname").val("");
 			 $("#lastname").val("");
-			 $("#email").val("");
+			 $("#day").val("");
+			 $("#year").val("");
 			 $("#password").val("");
-			 window.location.replace("pagina_inicio_1.html")
+			 window.location.replace("index.html")
 		 },
 		 error: function(xhr, status) {
 			 alert('Disculpe, existió un problema');
-		 },
+		 }/*,
 		 complete: function(xhr, status) {
-			 //alert('Petición realizada');
-		 }
+			 alert('Petición realizada');
+		 }*/
 
 	 });
  }
+function showUsers() {
+    $.ajax({
+        url: "http://127.0.0.1:5000/users", // URL de tu API Flask
+        type: "GET",
+        contentType: "application/json",
+        dataType: "json",
+        success: function(users) {
+            let userList = $("#userList");
+            userList.empty();
+            users.forEach(user => {
+                userList.append(`<li>${user.nombres} ${user.apellidos}</li>`);
+            });
+        },
+        error: function(xhr, status) {
+            alert('Disculpe, existió un problema al obtener los usuarios');
+        }
+    });
+}
 
- function CheckingA() {
+function selectMonth(month) {
+	document.getElementById('monthDropdown').innerText = month;
+	
 
-	 let areas = [];
-	 // seleccionar todas las casillas de verificación en la página
-	 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
-	 // iterar sobre las casillas de verificación y encontrar las que están marcadas
-	 for (let i = 0; i < checkboxes.length; i++) {
-		 if (checkboxes[i].checked) {
-			 areas.push(checkboxes[i].value);
-		 }
-	 }
 
-	 $.ajax({
+	
+}
 
-		 url:"/api/v1/area/save",
-		 type:"POST",
-		 contentType:"application/json",
-		 dataType:"json",
-		 traditional: true,
-		 data:JSON.stringify({areas: areas}),
 
-		 success: function(rta) {
-			 console.log(this.areas);
-		 },
-		 error: function(xhr, status) {
-			 alert('Disculpe, existió un problema');
-		 },
-		 complete: function(xhr, status) {
-			 //alert('Petición realizada');
-		 }
 
-	 });
- }
-
- function CheckingC() {
-	 // seleccionar todas las casillas de verificación en la página
-	 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-	 let carreras = [];
-
-	 // iterar sobre las casillas de verificación y encontrar las que están marcadas
-	 for (let i = 0; i < checkboxes.length; i++) {
-		 if (checkboxes[i].checked) {
-			 carreras.push(checkboxes[i].value);
-		 }
-	 }
-
-	 $.ajax({
-
-		 url:"/api/v1/auth/register",
-		 type:"POST",
-		 contentType:"application/json",
-		 dataType:"json",
-
-		 data:JSON.stringify(data),
-
-		 success: function(rta) {
-			 console.log(rta);
-			 $("#name").val("");
-			 $("#lastname").val("");
-			 $("#email").val("");
-			 $("#password").val("");
-			 window.location.replace("pagina_inicio_3.html")
-
-		 },
-		 error: function(xhr, status) {
-			 alert('Disculpe, existió un problema');
-		 },
-		 complete: function(xhr, status) {
-			 //alert('Petición realizada');
-		 }
-
-	 });
- }
-
- function CheckingM() {
-	 // seleccionar todas las casillas de verificación en la página
-	 const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-
-	 let materias = [];
-
-	 // iterar sobre las casillas de verificación y encontrar las que están marcadas
-	 for (let i = 0; i < checkboxes.length; i++) {
-		 if (checkboxes[i].checked) {
-			 materias.push(checkboxes[i].value);
-		 }
-	 }
-	 window.location.replace("inicio.html")
-
- }
+ 
  

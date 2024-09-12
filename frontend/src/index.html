@@ -38,25 +38,25 @@
 
                     <!-- Dropdown para el mes -->
                     <div class="dropdown">
-                        <button class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false" style="width: 120px;">
-                            Mes
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-dark">
-                            <li><a class="dropdown-item" href="#">Enero</a></li>
-                            <li><a class="dropdown-item" href="#">Febrero</a></li>
-                            <li><a class="dropdown-item" href="#">Marzo</a></li>
-                            <li><a class="dropdown-item" href="#">Abril</a></li>
-                            <li><a class="dropdown-item" href="#">Mayo</a></li>
-                            <li><a class="dropdown-item" href="#">Junio</a></li>
-                            <li><a class="dropdown-item" href="#">Julio</a></li>
-                            <li><a class="dropdown-item" href="#">Agosto</a></li>
-                            <li><a class="dropdown-item" href="#">Septiembre</a></li>
-                            <li><a class="dropdown-item" href="#">Octubre</a></li>
-                            <li><a class="dropdown-item" href="#">Noviembre</a></li>
-                            <li><a class="dropdown-item" href="#">Diciembre</a></li>
-                        </ul>
-                    </div>
+    <button id="monthDropdown" class="btn btn-outline-success dropdown-toggle" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false" style="width: 120px;">
+        Mes
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Enero')">Enero</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Febrero')">Febrero</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Marzo')">Marzo</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Abril')">Abril</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Mayo')">Mayo</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Junio')">Junio</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Julio')">Julio</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Agosto')">Agosto</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Septiembre')">Septiembre</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Octubre')">Octubre</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Noviembre')">Noviembre</a></li>
+        <li><a class="dropdown-item" href="#" onclick="selectMonth('Diciembre')">Diciembre</a></li>
+    </ul>
+</div>
 
                     <!-- Campo de entrada para el año -->
                     <input type="number" class="form-control" id="year" placeholder="Año" min="1900" max="2024"
@@ -75,8 +75,12 @@
         </div>
     </span>
 
-    <!-- Bootstrap JavaScript -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+     
+     <script src="myScript.js"></script>
+
 </body>
 
 </html>
