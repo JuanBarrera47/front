@@ -28,7 +28,7 @@ function registerData() {
 
 	 $.ajax({
 
-		 url: "http://127.0.0.1:5000/users",  // URL de tu API Flask
+		 url: "http://127.0.0.1:5000/users",  
 		 type:"POST",
 		 contentType:"application/json",
 		 dataType:"json",
@@ -45,17 +45,17 @@ function registerData() {
 			 window.location.replace("index.html")
 		 },
 		 error: function(xhr, status) {
-			 alert('Disculpe, existió un problema');
-		 }/*,
+			 alert('Error en la petición');
+		 }
 		 complete: function(xhr, status) {
 			 alert('Petición realizada');
-		 }*/
+		 }
 
 	 });
  }
 function showUsers() {
     $.ajax({
-        url: "http://127.0.0.1:5000/users", // URL de tu API Flask
+        url: "http://127.0.0.1:5000/users", 
         type: "GET",
         contentType: "application/json",
         dataType: "json",
