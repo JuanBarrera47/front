@@ -28,7 +28,7 @@ function registerData() {
 
 	 $.ajax({
 
-		 url: "http://127.0.0.1:5000/users",  
+		 url: "http://ec2-3-238-228-148.compute-1.amazonaws.com:5000/registro",  // URL de tu API Flask
 		 type:"POST",
 		 contentType:"application/json",
 		 dataType:"json",
@@ -45,17 +45,17 @@ function registerData() {
 			 window.location.replace("index.html")
 		 },
 		 error: function(xhr, status) {
-			 alert('Error en la petición');
-		 }
+			 alert('Disculpe, existió un problema');
+		 }/*,
 		 complete: function(xhr, status) {
 			 alert('Petición realizada');
-		 }
+		 }*/
 
 	 });
  }
 function showUsers() {
     $.ajax({
-        url: "http://127.0.0.1:5000/users", 
+        url: "http://ec2-3-238-228-148.compute-1.amazonaws.com:5000/usuarios", // URL de tu API Flask
         type: "GET",
         contentType: "application/json",
         dataType: "json",
